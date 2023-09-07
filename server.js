@@ -3,8 +3,10 @@ const mongoose = require('mongoose')
 const app = express()
 const Product = require('./models/productModel')
 
+
 //middleware
-app.use(express.json())
+//Application to understand JSON
+app.use(express.json()) 
 
 //routes
 
@@ -12,7 +14,7 @@ app.use(express.json())
 app.post('/products',async(req,res)=>{
     try{
         const product = await Product.create(req.body)
-        res.status(200).json(product);
+        res.status(200).json(Product);
     }catch(error){
         console.log(error.message);
         res.status(500).json({message: error.message})
@@ -72,12 +74,12 @@ app.delete('/products/:id',async(req,res)=>{
     }
 })
 //mongoDB connection
-mongoose.connect('mongodb+srv://veena:admin12345@devapi.dyfg0cy.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://admin:veenaadmin123@nodeclusterbyveena.gjyoryp.mongodb.net/Node-API?retryWrites=true&w=majority')
 .then(()=>{
-    app.listen(3000, ()=>{
-        console.log('NodeAPI app is running on port 3000')
-    });
-    console.log('Connected to MongoDB')
+    console.log('connected to mongoDB')
+    app.listen(3000,()=>{
+        console.log('Node API app is runnning on 3000')
+     });
 }).catch(()=>{
     console.log('Error connecting MongoDB')
 })
