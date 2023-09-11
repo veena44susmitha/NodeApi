@@ -14,7 +14,7 @@ app.use(express.json())
 app.post('/products',async(req,res)=>{
     try{
         const product = await Product.create(req.body)
-        res.status(200).json(Product);
+        res.status(200).json(product);
     }catch(error){
         console.log(error.message);
         res.status(500).json({message: error.message})
@@ -74,12 +74,12 @@ app.delete('/products/:id',async(req,res)=>{
     }
 })
 //mongoDB connection
-mongoose.connect('mongodb+srv://admin:veenaadmin123@nodeclusterbyveena.gjyoryp.mongodb.net/Node-API?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://admin:adminveena123@nodeclusterbyveena.gjyoryp.mongodb.net/Node-API?retryWrites=true&w=majority')
 .then(()=>{
     console.log('connected to mongoDB')
     app.listen(3000,()=>{
         console.log('Node API app is runnning on 3000')
      });
-}).catch(()=>{
-    console.log('Error connecting MongoDB')
+}).catch((error)=>{
+    console.log(error);
 })
