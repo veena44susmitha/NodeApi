@@ -32,6 +32,10 @@ app.get('/products',async(req,res)=>{
     }
 })
 
+app.get('/',async(req,res)=>{
+    res.redirect('/products');
+})
+
 //Read a Product by Id
 app.get('/products/:id',async(req,res)=> {
     try{
